@@ -22,7 +22,6 @@
     <div class="col-lg-10">
       <%= f.text_field :name, :class => 'form-control' %>
     </div>
-    <%= error_span(@contact[:name]) %>
   </div>
 
   <div class="form-group">
@@ -30,7 +29,6 @@
     <div class="col-lg-10">
       <%= f.text_field :description, :class => 'form-control' %>
     </div>
-    <%= error_span(@contact[:description]) %>
   </div>
 
   <div class="form-group">
@@ -38,7 +36,6 @@
     <div class="col-lg-10">
       <%= f.text_field :search_field, :class => 'form-control' %>
     </div>
-    <%= error_span(@contact[:search_field]) %>
   </div>
 
   <div class="form-group">
@@ -46,7 +43,6 @@
     <div class="col-lg-10">
       <%= f.collection_select :contact_type_ids, ContactType.without_parents.order(:name), :id, :name, {include_blank: 'Selecione o tipo de contato'}, {:class => 'form-control selectize', multiple: true} %>
     </div>
-    <%= error_span(@contact[:contact_type_ids]) %>
   </div>
 
   <% if @region.blank? %>
@@ -55,7 +51,6 @@
       <div class="col-lg-10">
         <%= f.collection_select :region_id, Region.all, :id, :name, {}, {:class => 'form-control'} %>
       </div>
-      <%= error_span(@contact[:region_id]) %>
     </div>
   <% else %>
     <%= f.hidden_field :helpful %>
@@ -66,7 +61,6 @@
     <div class="col-lg-10">
       <%= f.text_field :address, :class => 'form-control' %>
     </div>
-    <%= error_span(@contact[:address]) %>
   </div>
 
   <div class="form-group">
@@ -74,7 +68,6 @@
     <div class="col-lg-10">
       <%= f.text_field :address_for_geocoder, :class => 'form-control' %>
     </div>
-    <%= error_span(@contact[:address_for_geocoder]) %>
   </div>
 
 
@@ -122,7 +115,6 @@
       <div class="col-lg-10">
         <%= f.check_box :open_24, :class => 'form-control' %>
       </div>
-      <%= error_span(@contact[:open_24]) %>
     </div>
 
     <div class="form-group">
@@ -130,14 +122,12 @@
       <div class="col-lg-10">
         <%= f.check_box :on_call_drugstore, :class => 'form-control' %>
       </div>
-      <%= error_span(@contact[:on_call_drugstore]) %>
     </div>
     <div class="form-group">
       <%= f.label :subscriber, :class => 'col-lg-2 control-label' %>
       <div class="col-lg-10">
         <%= f.check_box :subscriber, :class => 'form-control' %>
       </div>
-      <%= error_span(@contact[:subscriber]) %>
     </div>
   <% if @contact.photos.main_photos.empty? %>
       <%= f.fields_for :photos, @contact.photos.build do |photo_builder| %>
