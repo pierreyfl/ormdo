@@ -1,0 +1,8 @@
+production:
+  adapter: mysql2
+  encoding: utf8
+  pool: 25
+  host: lolyapp.c4lmhwer4mmn.sa-east-1.rds.amazonaws.com
+  database: lolyapp
+  username: lolyapp
+  password: LoHAhKZM76eEjK

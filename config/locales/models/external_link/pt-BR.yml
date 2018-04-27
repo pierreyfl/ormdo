@@ -1,0 +1,21 @@
+pt-BR:
+  activerecord:
+    models:
+      external_link:
+        one: "Link externo"
+        other: "Links externos"
+    attributes:
+      external_link:
+        name: "Nome do link"
+        link: "Link de acesso"
+        link_provider: "Tipo"
+        link_type: "Tipo"
+        link_types:
+          facebook: "Facebook"
+          twitter: "Twitter"
+          site: "Site"
+          linkedin: "Linkedin"
+          youtube: "Youtube"
+          instagram: "Instagram"
+          email: "Email"
+          whatsapp: "WhatsApp"

@@ -1,0 +1,9 @@
+json.photos do
+  json.array!(photos) do |photo|
+    json.extract! photo, :id, :created_at, :updated_at
+    json.medium photo.file(:medium)
+    json.thumb photo.file(:thumb)
+    json.original photo.file(:original)
+  end
+end
+

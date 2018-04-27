@@ -1,0 +1,32 @@
+.navbar-inverse {
+  background-color: #19385c;
+}
+.btn-icon {
+  @extend .btn-xs;
+  padding: 5px 10px 5px 10px;
+  margin: 0;
+}
+a.btn-danger > i
+{
+  color: white;
+}
+
+.btn-delete-img
+{
+  position: absolute;
+  top: 5px;
+  right: 20px;
+}
+
+h1,h2,h3 {
+  margin-top: 0;
+}
+
+.page-header
+{
+  margin-top: 0;
+}
+
+dl > dt {
+  color: #2c65a0;
+}

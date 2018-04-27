@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      region:
+        one: "Região"
+        other: "Regiões"
+    attributes:
+      region:
+        state: Estado
+        name: Nome

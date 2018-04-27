@@ -1,0 +1,136 @@
+<% if @ad.errors.any? %>
+  <div id="error_expl" class="panel panel-danger">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= pluralize(@ad.errors.count, "error") %> prohibited this ad from being saved:</h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+      <% @ad.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<%= form_for @ad, :html => { :class => "form-horizontal ad" } do |f| %>
+  <div class="form-group">
+    <%= f.label :advertiser, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :advertiser, :class => 'form-control' %>
+    </div>
+    <%= error_span(@ad[:advertiser]) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :region, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.collection_select(:region_id, Region.all, :id, :name, {include_blank: 'Selecione a região'}, {class: "form-control"}) %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :view_type, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.select :view_type, options_for_select(Ad.view_type_attributes_for_select, selected: @ad.view_type), {} , class: "form-control" %>
+    </div>
+    <%= error_span(@ad[:view_type]) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label t('general.date_period'), :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-4">
+      <%= f.date_field :start_date, :class => 'form-control' %>
+    </div>
+    <%= f.label "à", :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-4">
+      <%= f.date_field :end_date, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :position, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.select :position, options_for_select(Ad.position_attributes_for_select, selected: @ad.position), {} , class: "form-control" %>
+    </div>
+    <%= error_span(@ad[:visit_type]) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :visit_type, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.select :visit_type, options_for_select(Ad.visit_type_attributes_for_select, selected: @ad.visit_type), {} , class: "form-control" %>
+    </div>
+    <%= error_span(@ad[:visit_type]) %>
+  </div>
+
+  <div class="ad_visit_type external_link">
+    <br />
+    <%= f.fields_for :external_links do |external_link| %>
+      <div class="form-group">
+        <%= external_link.label "Link principal", :class => 'col-lg-2 control-label' %>
+        <div class="col-lg-5">
+          <%= external_link.select :link_type, options_for_select(ExternalLink.link_type_attributes_for_select, selected: external_link.object.try(:link_type)), {} , class: "form-control" %>
+          <span class="help-block">Tipo</span>
+        </div>
+
+        <div class="col-lg-5">
+          <%= external_link.text_field :link, :class => 'form-control' %>
+          <span class="help-block">Link de acesso</span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="ad_visit_type contact">
+    <div class="form-group">
+      <%= f.label :contact, :class => 'col-lg-2 control-label' %>
+      <div class="col-lg-10">
+        <%= f.collection_select(:contact_id, @contacts, :id, :name, {}, {class: "form-control"}) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group wrong-size">
+    <%= f.label :keyword, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :keyword, :class => 'form-control tags wrong-size', placeholder: "Palavas-chave..." %>
+    </div>
+  </div>
+
+  <div class="ad_view_type photo">
+    <% if (!@photo.file_file_name.present? || !@photo.persisted?) %>
+      <%= f.fields_for :photos do |photo_builder| %>
+        <div class="form-group">
+          <%= photo_builder.label t('general.ad_photo'), :class => 'col-lg-2 control-label' %>
+          <div class="col-lg-10">
+            <input type="text" readonly="" class="form-control floating-label" placeholder="<%= t('general.contact_photo_placeholder') %>">
+            <%= photo_builder.file_field :file %>
+          </div>
+          <%= error_span(@photo[:file]) %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="row">
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <img src="<%= @photo.file.url(:medium) %>" alt="...">
+
+            <% if (@photo.persisted?) %>
+              <%= link_to '<i class="icon mdi-content-remove-circle"></i>'.html_safe,
+                          url_for([@ad, @photo]),
+                          :method => :delete,
+                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                          :class => 'btn btn-icon btn-danger btn-delete-img' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            ads_path, :class => 'btn btn-default' %>
+
+<% end %>

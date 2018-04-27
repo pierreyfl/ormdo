@@ -1,0 +1,20 @@
+<% content_for :sidebar do %>
+    <%- model_class = Contact -%>
+    <h3><%= t('general.contact_info') %></h3>
+    <dl class="dl-vertical">
+      <dt><strong><%= model_class.human_attribute_name(:region_id) %>:</strong></dt>
+      <dd><%= @resource.region.name %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+      <dd><%= @resource.name %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+      <dd><%= @resource.description %></dd>
+      <% if (@resource.contact_types.present?) %>
+        <dt><strong><%= model_class.human_attribute_name(:contact_types) %>:</strong></dt>
+        <dd><%= @resource.contact_types.map(&:name).join(', ') %></dd>
+      <% end %>
+    </dl>
+    <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_contact_path(@resource), :class => 'btn btn-xs btn-primary' %>
+
+    <%= render :partial => 'contacts/additional_info' %>
+
+<% end %>

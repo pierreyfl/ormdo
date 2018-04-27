@@ -1,0 +1,44 @@
+<%= form_for [@resource, @external_link], :html => { :class => "form-horizontal external_link" } do |f| %>
+
+    <% if @external_link.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@external_link.errors.count, "error") %> prohibited this external_link from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @external_link.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :link_provider, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.select :link_type, options_for_select(ExternalLink.link_type_attributes_for_select, selected: f.object.try(:link_type)), {} , class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :link, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :link, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            url_for([@resource, :external_links]), :class => 'btn btn-default' %>
+
+<% end %>

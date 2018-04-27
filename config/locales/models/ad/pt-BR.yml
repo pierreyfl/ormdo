@@ -1,0 +1,40 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        ad:
+          attributes:
+            start_date:
+              after: "deve ser depois do dia de hoje"
+              after_or_equal_to: "não deve ser anterior ao dia de hoje"
+              before_or_equal_to: "deve ser anterior a data de término"
+            end_date:
+              after: "deve ser depois do dia de hoje"
+              after_or_equal_to: "deve ser posterior a data de início"
+    models:
+      ad:
+        one: "Anúncio"
+        other: "Anúncios"
+    attributes:
+      ad:
+        view_type: "Tipo"
+        visit_type: "Redirecionar para"
+        title: "Título"
+        description: "Descrição"
+        position: "Local de exibição"
+        start_date: "Data de início"
+        end_date: "Data de término"
+        contact: "Contato"
+        region: "Região"
+        advertiser: "Anunciante"
+        keyword: "Palavras-chave"
+        view_types:
+            text: "Texto"
+            photo: "Patrocinado"
+            sponsorship: "Padrão"
+        positions:
+            menu: "Menu principal"
+            list: "Lista de resultados"
+        visit_types:
+            contact: "Próprio contato"
+            external_link: "Link externo"

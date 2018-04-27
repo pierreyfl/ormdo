@@ -1,0 +1,59 @@
+<%- model_class = Region -%>
+<%= form_for @region, :html => { :class => "form-horizontal region" } do |f| %>
+    <fieldset>
+      <legend><%= model_class.model_name.human %></legend>
+      <% if @region.errors.any? %>
+          <div id="error_expl" class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= pluralize(@region.errors.count, "error") %> prohibited this region from being saved:</h3>
+            </div>
+            <div class="panel-body">
+              <ul>
+                <% @region.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+      <% end %>
+      <div class="form-group">
+        <%= f.label :state, :class => 'col-lg-2 control-label' %>
+        <div class="col-lg-10">
+          <%= f.text_field :state, :class => 'form-control', autofocus: true %>
+          <%= error_span(@region[:state]) %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :name, :class => 'col-lg-2 control-label' %>
+        <div class="col-lg-10">
+          <%= f.text_field :name, :class => 'form-control' %>
+          <%= error_span(@region[:name]) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :ddd, :class => 'col-lg-2 control-label' %>
+        <div class="col-lg-10">
+          <%= f.number_field :ddd, :class => 'form-control' %>
+          <%= error_span(@region[:ddd]) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :uploader, :class => 'col-lg-2 control-label' %>
+        <div class="col-lg-10">
+          <%= f.file_field :uploader, :class => 'form-control' %>
+          <%= error_span(@region[:uploader]) %>
+        </div>
+      </div>
+
+    </fieldset>
+
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")), regions_path, :class => 'btn btn-default' %>
+        <%= f.submit t('helpers.links.salvar'), :class => 'btn btn-primary' %>
+      </div>
+    </div>
+
+<% end %>

@@ -1,0 +1,23 @@
+pt-BR:
+  activerecord:
+    models:
+      phone:
+        one: "Telefone"
+        other: "Telefones"
+    attributes:
+      phone:
+        number: "Número"
+        area: "Código de área"
+        priority: "Prioridade"
+        description: "Descrição"
+        id: "Identificador"
+        carrier: "Operadora"
+        carriers:
+          tim: "TIM"
+          claro: "Claro"
+          ctbc_telecom: "CTBC Telecom"
+          oi: "Oi"
+          vivo: "Vivo"
+          sercomtel: "Sercomtel"
+          nextel: "Nextel"
+          gvt: "GVT"

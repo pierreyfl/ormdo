@@ -1,0 +1,5 @@
+<h3><%= t('general.additional_info') %></h3>
+<ul class="nav nav-list">
+    <li><%= link_to '<i class="icon icon-material-phone pull-right"></i> Contatos'.html_safe, region_contacts_path(@region)  %></li>
+    <li><%= link_to '<i class="icon icon-material-phone pull-right"></i> Contatos úteis'.html_safe, helpful_region_contacts_path(@region)  %></li>
+</ul>

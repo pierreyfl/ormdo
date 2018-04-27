@@ -1,0 +1,5 @@
+LinkProvider.find_or_create_by(:name => 'Facebook')
+LinkProvider.find_or_create_by(:name => 'Twitter')
+LinkProvider.find_or_create_by(:name => 'Site')
+LinkProvider.find_or_create_by(:name => 'Telefone')
+LinkProvider.find_or_create_by(:name => 'Linkedin')

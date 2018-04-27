@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      contact_type:
+        one: "Tipo de contato"
+        other: "Tipos de contato"
+    attributes:
+      contact_type:
+        name: "Nome"
+        parent_contact_type_id: "Tipo de Contato Pai"

@@ -1,0 +1,8 @@
+<h3><%= t('general.additional_info') %></h3>
+<ul class='nav nav-list'>
+  <% if @resource.instance_of?(Contact) %>
+    <li><%= link_to "<i class='icon icon-material-phone pull-right'></i> #{Phone.model_name.human(count:2)}".html_safe, url_for([@resource, :phones])  %></li>
+  <% end %>
+  <li><%= link_to "<i class='icon icon-material-photo pull-right'></i> #{Photo.model_name.human(count:2)}".html_safe, url_for([@resource, :photos])  %></li>
+  <li><%= link_to "<i class='icon icon-material-link pull-right'></i> #{ExternalLink.model_name.human(count:2)}".html_safe, url_for([@resource, :external_links])  %></li>
+</ul>

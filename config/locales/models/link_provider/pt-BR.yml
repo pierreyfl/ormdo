@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      link_provider:
+        one: "Tipo de link"
+        other: "Tipos de links"
+    attributes:
+      link_provider:
+        name: "Nome"

@@ -1,0 +1,15 @@
+development:
+  access_key_id: AKIAIBHQE4Y5OXXNLVRA
+  secret_access_key: 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
+
+production:
+  access_key_id: AKIAIBHQE4Y5OXXNLVRA
+  secret_access_key: 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
+
+production:
+  access_key_id: AKIAIBHQE4Y5OXXNLVRA
+  secret_access_key: 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
+
+unstable:
+  access_key_id: AKIAIBHQE4Y5OXXNLVRA
+  secret_access_key: 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

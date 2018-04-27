@@ -1,0 +1,54 @@
+<div class="well">
+  <%- model_class = Photo -%>
+  <div class="page-header">
+    <h1><%=t '.title', :default => model_class.model_name.human(:count => 2).titleize %></h1>
+  </div>
+
+  <!-- MAIN PHOTOS -->
+  <div class="row">
+    <% @photos.main_photos.each do |photo_builder| %>
+        <div class="col-sm-6 col-md-4" >
+          <div class="thumbnail">
+            <img src="<%= photo_builder.file.url(:medium) %>" alt="...">
+            <h2 class="label center-block"><%= t("general.main_photo") %></h2>
+            <%= link_to '<i class="icon mdi-content-remove-circle"></i>'.html_safe,
+                        url_for([@resource, photo_builder]),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-icon btn-danger btn-delete-img' %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+
+  <!-- NORMAL PHOTOS -->
+  <div class="row">
+    <% @photos.normal_photos.each do |photo_builder| %>
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <img src="<%= photo_builder.file.url(:medium) %>" alt="...">
+            <%= link_to '<i class="icon mdi-content-remove-circle"></i>'.html_safe,
+                        url_for([@resource, photo_builder]),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-icon btn-danger btn-delete-img' %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+                url_for([:new, @resource, :photo]),
+                :class => 'btn btn-primary' %>
+  </div>
+
+</div>
+
+<% content_for :sidebar do %>
+  <%- if @resource.class.name == 'Ad' -%>
+    <%= render 'ads/sidebar' %>
+  <%- else -%>
+    <%= render 'contacts/sidebar' %>
+  <%- end -%>
+<% end %>

@@ -1,0 +1,5 @@
+en:
+  dentaloffice:
+    errors:
+      permission_error: "Your user does not have permission to perform this request"
+      record_not_found: "Record not Found."

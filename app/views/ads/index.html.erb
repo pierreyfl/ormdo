@@ -1,0 +1,82 @@
+<div class="well">
+  <%- model_class = Ad -%>
+  <div class="page-header">
+    <h1><%=t '.title', :default => model_class.model_name.human(:count => 2).titleize %></h1>
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+                new_ad_path,
+                :class => 'btn btn-primary' %>
+  </div>
+
+  <%= form_tag '', :method => :get, class: "form-inline", role: "form" do %>
+    <div class="form-group">
+      <%= text_field_tag :global_filter, @global_filter, placeholder: "Busca...", class: "form-control" %>
+    </div>
+
+    <span><%= t('general.date_period')%>:</span>
+    <div class="form-group">
+      <%= date_field_tag :start_date_after_filter, @start_date_after_filter, class: "form-control" %>
+    </div>
+    <span>à:</span>
+    <div class="form-group">
+      <%= date_field_tag :end_date_before_filter, @end_date_before_filter, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= select_tag :position_filter, options_for_select(Ad.position_attributes_for_select, selected: @position_filter), {prompt: "Selecione o local de exibição", class: "form-control"} %>
+    </div>
+
+    <div class="form-group">
+      <%= submit_tag 'Filtrar', class: "btn btn-default btn-sm" %>
+    </div>
+  <% end %>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:advertiser) %></th>
+      <th><%= model_class.human_attribute_name(:region) %></th>
+      <th><%= model_class.human_attribute_name(:position) %></th>
+      <th><%= t('general.date_period') %></th>
+
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @ads.each do |ad| %>
+        <tr>
+          <td><%= ad.advertiser %></td>
+          <td><%= ad.region.try(:name) %></td>
+          <td><%= I18n.t("activerecord.attributes.ad.positions.#{ad.position}")%></td>
+          <td>
+          <% if (ad.start_date.present? && ad.end_date.present?) %>
+            <%=l ad.start_date, format: :short %> / <%=l ad.end_date, format: :short %>
+          <% elsif (ad.start_date.present?) %>
+            Inicia em: <%=l ad.start_date, format: :short %>
+          <% elsif (ad.end_date.present?) %>
+            Termina em: <%=l ad.end_date, format: :short %>
+          <% end %>
+          </td>
+
+          <td>
+            <%= link_to '<i class="icon mdi-content-create"></i>'.html_safe,
+                        edit_ad_path(ad), :class => 'btn btn-default btn-icon' %>
+            <%= link_to '<i class="icon mdi-content-remove-circle"></i>'.html_safe,
+                        ad_path(ad),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-icon btn-default' %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @ads, renderer: BootstrapPagination::Rails %>
+  <br />
+
+  <div class="pull-right">
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+                new_ad_path,
+                :class => 'btn btn-primary' %>
+  </div>
+    <div class="clearfix"></div>
+</div>

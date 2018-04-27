@@ -1,0 +1,23 @@
+pt-BR:
+  activerecord:
+    models:
+      contact:
+        one: "Contato"
+        other: "Contatos"
+    attributes:
+      contact:
+        file: "Foto principal"
+        name: "Nome"
+        description: "Resumo"
+        search_field: "Resumo para busca"
+        latitude: "Latitude"
+        longitude: "Longitude"
+        address: "Endereço para exibição"
+        address_for_geocoder: "Endereço para localização"
+        helpful: "Telefone útil"
+        contact_type_ids: "Categorias"
+        contact_types: "Categorias"
+        region: "Região"
+        region_id: "Região"
+        open_24: "Aberto 24hrs"
+        on_call_drugstore: "Farmácia de Plantão"

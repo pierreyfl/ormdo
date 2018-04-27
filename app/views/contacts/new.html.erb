@@ -1,0 +1,10 @@
+<div class="well">
+  <%= render :partial => 'form' %>
+</div>
+
+<% content_for :sidebar do %>
+  <%- if @region.class.name == 'Region' -%>
+    <%= render 'regions/sidebar' %>
+  <%- end -%>
+<% end %>
+

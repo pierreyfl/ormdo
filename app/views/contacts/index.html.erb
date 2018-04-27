@@ -1,0 +1,90 @@
+<div class="well">
+  <%- model_class = Contact -%>
+  <div class="page-header">
+    <h1><%=t '.title', :default => model_class.model_name.human(:count => 2).titleize %></h1>
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+                url_for([:new, @region, :contact, params: {helpful: @helpful_contacts}]),
+                :class => 'btn btn-primary' %>
+  </div>
+
+  <%= form_tag '', :method => :get, class: "form-inline", role: "form" do %>
+    <div class="form-group">
+        <%= text_field_tag :global_filter, @global_filter, class: "form-control", placeholder: "Busca..." %>
+    </div>
+
+    <% if !@region.present? || !@region.instance_of?(Region) %>
+      <div class="form-group">
+        <%= select_tag :region_filter, options_from_collection_for_select(Region.all.order('name asc'), "id", "name", @region_filter), prompt: "Selecione a região", class: "form-control" %>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= select_tag :contact_type_filter, options_from_collection_for_select(ContactType.all.order('name asc'), "id", "name", @contact_type_filter), prompt: "Selecione a categoria", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= submit_tag 'Filtrar', class: "btn btn-default btn-sm" %>
+    </div>
+  <% end %>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th width="30%"><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:contact_types) %></th>
+      <th><%= model_class.human_attribute_name(:region) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @contacts.each do |contact| %>
+        <tr>
+          <% unless contact.latitude.present? || contact.longitude.present?%>
+              <td><%= contact.name %> <i> (<%= t('general.address_not_found')%>) </i></td>
+          <% else %>
+              <td><%= contact.name %></td>
+          <% end %>
+
+          <% if contact.contact_types.present? %>
+            <td><%= contact.contact_types.order(:name).map(&:name).join(', ') %></td>
+          <% else %>
+          <td></td>
+          <% end %>
+          <td><%= contact.region.name %></td>
+          <td>
+            <%= link_to '<i class="icon mdi-content-create"></i>'.html_safe,
+                        url_for([:edit, @region, contact]), :class => 'btn btn-default btn-icon btn-small' %>
+            <%= link_to '<i class="icon mdi-content-remove-circle"></i>'.html_safe,
+                        url_for([@region, contact]),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-icon btn-default  btn-small' %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @contacts, renderer: BootstrapPagination::Rails %>
+  <br />
+
+  <div class="pull-right">
+    <% if (@region.present?) %>
+        <%= link_to t('.import', :default => t("helpers.links.import")),
+                    import_csv_region_contacts_path(@region),
+                    :class => 'btn btn-primary' %>
+    <% end %>
+
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+                url_for([:new, @region, :contact, params: {helpful: @helpful_contacts}]),
+                :class => 'btn btn-primary' %>
+  </div>
+    <div class="clearfix"></div>
+
+</div>
+
+<% content_for :sidebar do %>
+  <%- if @region.class.name == 'Region' -%>
+    <%= render 'regions/sidebar' %>
+  <%- end -%>
+<% end %>

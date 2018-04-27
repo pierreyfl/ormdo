@@ -1,0 +1,14 @@
+default: &default
+  app_name: 'Loly'
+  
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+unstable:
+  <<: *default
+
+production:
+  <<: *default

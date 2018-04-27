@@ -1,0 +1,21 @@
+<div class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="javascript:void(0)"><%= APPCONFIG['app_name'] %></a>
+    </div>
+    <div class="navbar-collapse collapse navbar-inverse-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to Region.model_name.human(count: 2).titleize, regions_path %></li>
+        <li><%= link_to Contact.model_name.human(count: 2).titleize, contacts_path %></li>
+        <li><%= link_to ContactType.model_name.human(count: 2).titleize, contact_types_path %></li>
+        <li><%= link_to Ad.model_name.human(count: 2).titleize, ads_path %></li>
+        <li><%= link_to 'Sair', destroy_user_session_path, :method=>'delete' %></li>
+      </ul>
+    </div>
+  </div>
+</div>

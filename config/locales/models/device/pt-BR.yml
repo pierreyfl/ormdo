@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      device:
+        one: "Dispositivo"
+        other: "Dispositivos"
+    attributes:
+      device:
+        platform: "Plataforma"
+        register: "Registro"
+        user: "Usuário"

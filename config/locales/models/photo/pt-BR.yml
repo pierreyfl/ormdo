@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      photo:
+        one: "Foto"
+        other: "Fotos"
+    attributes:
+      photo:
+        file: "Arquivo"
+        file_file_name: "Nome do arquivo"
+        file_content_type: "Tipo de conteúdo"
+        file_file_size: "Tamanho do arquivo"
+        file_updated_at: "Atualizado em"
