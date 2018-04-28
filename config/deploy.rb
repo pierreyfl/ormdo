@@ -1,4 +1,4 @@
-set :repo_url, 'https://my_github_username:my_github_password@github.com:pierreyfl/ormdo.git'
+set :repo_url, 'git@github.com:pierreyfl/ormdo.git'
 
 set :use_sudo, true
 set :migration_role, 'db'
