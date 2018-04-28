@@ -33,7 +33,7 @@ set :pty, true
 set :ssh_options, {
     forward_agent: true,
     auth_methods: ["publickey"],
-    keys: ['/home/ferhan/.ssh/.ssh/id_rsa.pub']
+    keys: ['/home/ferhan/Downloads/lolyapp.pem']
 }
 after 'deploy:updated', 'deploy:migrate'
 
