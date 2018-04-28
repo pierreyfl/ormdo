@@ -29,7 +29,9 @@ gem 'capistrano',  '~> 3.1'
 gem 'capistrano-rails', '~> 1.1'
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rvm'
-# gem 'capistrano3-puma'
+gem 'capistrano3-puma'
+gem 'capistrano-git-submodule-strategy', '~> 0.1', :github => 'ekho/capistrano-git-submodule-strategy'
+gem 'net-ssh'
 gem 'puma'
 
 # Segurança

@@ -1,4 +1,4 @@
-set :repo_url, 'git@git.agivis.com.br:loly/api.git'
+set :repo_url, 'git@github.com:pierreyfl/ormdo.git'
 
 set :use_sudo, true
 set :migration_role, 'db'
@@ -26,7 +26,15 @@ set :slack_team, "agivis"
 set :slack_token, ENV['SLACK_TOKEN']
 set :slack_channel, '#loly'
 set :slack_msg_finished, -> { "#{ENV['SLACK_USER'] || ENV['USER'] || ENV['USERNAME']} finalizou deploy da API em #{fetch :rails_env, 'production'}" }
+set :scm, :git
+set :git_strategy, Capistrano::Git::SubmoduleStrategy
+set :pty, true
 
+set :ssh_options, {
+    forward_agent: true,
+    auth_methods: ["publickey"],
+    keys: ['/home/ferhan/Downloads/lolyapp.pem']
+}
 after 'deploy:updated', 'deploy:migrate'
 
 namespace :deploy do
