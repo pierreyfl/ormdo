@@ -43,6 +43,6 @@ class RegionsController < ApplicationController
     end
 
     def region_params
-      params.require(:region).permit(:state, :name, :ddd)
+      params.require(:region).permit(:state, :name, :ddd,:uploader)
     end
 end
