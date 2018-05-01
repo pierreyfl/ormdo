@@ -52,6 +52,6 @@ class ContactTypesController < ApplicationController
     end
 
     def contact_type_params
-      params.require(:contact_type).permit(:name, :parent_contact_type_id, :deleted_at)
+      params.require(:contact_type).permit(:name, :parent_contact_type_id, :deleted_at,:uploader)
     end
 end
