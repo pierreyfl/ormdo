@@ -147,7 +147,7 @@ class ContactsController < ApplicationController
     end
 
     def contact_params
-      params.require(:contact).permit(:name, :open_24, :helpful, :address, :latitude, :longitude, :region_id, :description,
+      params.require(:contact).permit(:name,:subscriber, :open_24, :helpful, :address, :latitude, :longitude, :region_id, :description,
                                       :contact_type_id, :search_field, :address_for_geocoder, :on_call_drugstore,
                                       {contact_type_ids: []}, {photos_attributes: [:file, :id, :main,  :_destroy]},
                                       phones_attributes:[:id, :area, :number, :priority, :carrier],
